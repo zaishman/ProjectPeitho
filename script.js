@@ -75,10 +75,26 @@ const downTime = document.getElementById('decreaseTime');
     }
     });
 
-    /*
-    document.getElementById('pauseButton').addEventListener('click', pauseTimer);
+//DEBATE STUFF
 
-        document.getElementById('playButton').addEventListener('click', function() {
-        if (!timerInterval && currentSeconds > 0) {
-            countdown(currentSeconds);
-    }});*/
+const sides = ["Affirmative", "Negative"];
+
+document.getElementById('shuffleButton').addEventListener('click', async function() {
+    const promptArea = document.getElementById('promptArea');
+
+    try {
+    const response = await fetch('/topic');
+    console.log("Status:", response.status);
+
+    const text = await response.text();
+    console.log("response:", text);
+
+    const data = JSON.parse(text);
+    promptArea.textContent = data.topic;
+    document.getElementById('standingArea').textContent = sides[Math.floor(Math.random() * sides.length)];
+   
+    } catch (error) {
+        console.log("Error:", error);
+        promptArea.textContent = "error:" + error.message;
+    }
+});
