@@ -2,14 +2,14 @@
 const express = require('express'); //helps make server
 const Anthropic = require('@anthropic-ai/sdk'); //sdk that talks directly to claude
 require('dotenv').config(); //reads the env
-console.log("API KEY LOADED:", process.env.API_KEY);
+console.log("API KEY LOADED:", process.env.ANTHROPIC_API_KEY);
 
 const app = express();
 app.use(express.json());
 app.use(express.static('.'));
 //tells it to understand json data + loads project
 
-const anthropic = new Anthropic({ apiKey: process.env.API_KEY });
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 //client to communitcate with anthropic, hides API
 
 //routes the frotend and backend, essentially answers the fetch(/chat)
@@ -28,12 +28,13 @@ app.get('/topic', async (req, res) => {
         res.json({topic: response.content[0].text});
             //message that the frontend sends, and response with res.json
     } catch (error) {
+        console.log("FULL ERROR:", error);
         res.status(500).json({ error: error.message });
     }
 });
     app.listen(3000, () => console.log('Running on http://localhost:3000'));
 
-async function askClaude(userMessage) {
+/*async function askClaude(userMessage) {
     const response = await fetch('/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -43,6 +44,6 @@ async function askClaude(userMessage) {
     });
     const data = await response.json();
     return data.content[0].text;
-}
+}*/
 
     //sends message user sends, and tells claude to accept the content

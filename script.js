@@ -26,7 +26,7 @@ function countdown(timeSeconds) {
         currentSeconds = timeLeft; 
 
         if (--timeLeft < 0) {
-            clearInterval(timer);
+            clearInterval(timerInterval);
             display.textContent = "00:00"
         }
     }, 1000);
