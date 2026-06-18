@@ -1,13 +1,14 @@
-/*
-pre-set: 5:00
-when click "play", timer 
-when click "increase" -> math.floor (minutes + 1) 
-minutes = ""/60
-seconds = 60
-*/
+
 const fiveStart = 300;
 let currentSeconds = fiveStart;
 let timerInterval = null;
+
+function updateDisplay(totalSeconds) {
+        const display = document.getElementById('timer');
+        let minutes = Math.floor(timeLeft/60);
+        let seconds = timeLeft % 60;
+        display.textContent = `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+}
 
 function countdown(timeSeconds) {
     clearInterval(timerInterval);
@@ -41,8 +42,11 @@ const downTime = document.getElementById('decreaseTime');
         clearInterval(timerInterval);
         timerInterval = null;
         currentSeconds += 60;
-        if (wasRunning) countdown(currentSeconds);
-        else updateDisplay(currentSeconds);
+        if (wasRunning) {
+            countdown(currentSeconds);
+        } else {
+            updateDisplay(currentSeconds);
+        }
     });
 
     downTime.addEventListener('click', function () {
@@ -236,3 +240,30 @@ document.getElementById('viewAll').addEventListener('click', function() {
         container.innerHTML = " ";
     }
 })
+
+// BACKGROUND MOVEMENT
+
+document.addEventListener('DOMContentLoaded', () => {
+    const interBubble = document.querySelector('.interactive');
+    let curX = 0;
+    let curY = 0;
+    let tgX = 0;
+    let tgY = 0;
+
+    function move() {
+        curX += (tgX - curX) / 20;
+        curY += (tgY - curY) / 20;
+        interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+
+        requestAnimationFrame(() => {
+            move();
+        });
+    }
+
+    window.addEventListener('mousemove', (event) => {
+        tgX = event.clientX;
+        tgY = event.clientY;
+    });
+
+    move();
+});

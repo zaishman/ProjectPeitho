@@ -2,28 +2,199 @@ body {
     min-height: 100vh;
     overflow: hidden;
     margin: 0;
-    background-image: url('cool.png');
-    background-size: fit;
+    font-family: 'DM_Sans', sans-serif;
 }
+
+
+:root {
+    --colorBackground1: #0A0A0A;
+    --colorBackground2: #171717;
+    --color1: #262626;
+    --color2: #676767;
+    --color3: #383838;
+    --color4: #3c3c3c;
+    --color5: #373737;
+    --colorInteractive:#484848;
+    --circleSize: 160%;
+    --blending: hard-light;
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-20%);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(-20%);
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-20%) translateY(-5%);
+  }
+  50% {
+    transform: translateX(20%) translateY(5%);
+  }
+  100% {
+    transform: translateX(-20%) translateY(-5%);
+  }
+}
+
+.gradientBackground {
+    background: linear-gradient(40deg, var(--colorBackground1), var(--colorBackground2));
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.gradientContainer {
+    filter: url(#goo) blur(80px);
+    width: 100%;
+    height: 100%;
+}
+
+
+.g1 {
+    position: absolute;
+    background: radial-gradient(ellipse 80% 60% at 30% 40%, color-mix(in srgb, var(--color1) 90%, transparent) 0, color-mix(in srgb, var(--color1) 0%, transparent) 70%) no-repeat;
+    width: var(--circleSize);
+    height: var(--circleSize);
+    top: calc(50% - var(--circleSize) / 2);
+    left: calc(50% - var(--circleSize) / 2);
+
+    transform-origin: center center;
+    animation: moveVertical 40s ease infinite;
+
+    mix-blend-mode: var(--blending);
+    opacity: 1;
+}
+
+.g2 {
+    position: absolute;
+    background: radial-gradient(ellipse 60% 80% at 70% 30%, color-mix(in srgb, var(--color2) 80%, transparent) 0, color-mix(in srgb, var(--color2) 0%, transparent) 50%) no-repeat;
+    width: var(--circleSize);
+    height: var(--circleSize);
+    top: calc(50% - var(--circleSize) / 2);
+    left: calc(50% - var(--circleSize) / 2);
+
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 30s reverse infinite;
+
+    mix-blend-mode: var(--blending);
+    opacity: 1;
+}
+
+.g3 {
+    position: absolute;
+    background: radial-gradient(ellipse 90% 50% at 20% 70%, color-mix(in srgb, var(--color3) 80%, transparent) 0, color-mix(in srgb, var(--color3) 0%, transparent) 50%) no-repeat;
+    width: var(--circleSize);
+    height: var(--circleSize);
+    top: calc(50% - var(--circleSize) / 2 + 200px);
+    left: calc(50% - var(--circleSize) / 2 - 500px);
+
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 60s linear infinite;
+
+    mix-blend-mode: var(--blending);
+    opacity: 1;
+}
+
+
+.g4 {
+    position: absolute;
+    background: radial-gradient(ellipse 70% 90% at 80% 60%, color-mix(in srgb, var(--color4) 80%, transparent) 0, color-mix(in srgb, var(--color4) 0%, transparent) 50%) no-repeat;
+    width: var(--circleSize);
+    height: var(--circleSize);
+    top: calc(50% - var(--circleSize) / 2);
+    left: calc(50% - var(--circleSize) / 2);
+
+    transform-origin: calc(50% - 200px);
+    animation: moveHorizontal 55s ease infinite;
+
+    mix-blend-mode: var(--blending);
+    opacity: 0.7;
+}
+
+
+.g5 {
+    position: absolute;
+    background: radial-gradient(ellipse 100% 70% at 50% 80%, color-mix(in srgb, var(--color5) 80%, transparent) 0, color-mix(in srgb, var(--color5) 0%, transparent) 50%) no-repeat;
+    width: calc(var(--circleSize) * 2);
+    height: calc(var(--circleSize) * 2);
+    top: calc(50% - var(--circleSize));
+    left: calc(50% - var(--circleSize));
+
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 55s linear infinite;
+
+    mix-blend-mode: var(--blending);
+    opacity: 1;
+}
+
+.interactive {
+    position: absolute;
+    background: radial-gradient(ellipse 60% 60% at center, color-mix(in srgb, var(--colorInteractive) 80%, transparent) 0, color-mix(in srgb, var(--colorInteractive) 0%, transparent) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    top: -50%;
+    left: -50%;
+
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}
+
+
+
+
+
+
+
+/*OTHER*/
 
 #dividerContainer {
     display: grid;
     min-height: 100vh;
     box-sizing: border-box;
     padding: 10px;
+    position: relative;
+    z-index: 5;
     grid-template-columns: 6fr 3fr;
 }
 
 #timerSection {
-    background-color: #5facfd;
     min-height: calc(100vh - 20px);
-    border:2px solid #3e83cb;
 }
 
 #noteSection {
-    background-color: #9dcdff;
     min-height: calc(100vh - 20px);
-    border:2px solid #3e83cb;
+    overflow: auto;
 }
 
 #timerArea {
