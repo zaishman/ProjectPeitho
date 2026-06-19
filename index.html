@@ -11,51 +11,41 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-        <svg xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur" />
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 10 -5" result="goo" />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                </filter>
-            </defs>
-        </svg>
-
-    <div class="gradientBackground">
-        <div class="gradientContainer">
-            <div class="g1"></div>
-            <div class="g2"></div>
-            <div class="g3"></div>
-            <div class="g4"></div>
-            <div class="g5"></div>
-            <div class="interactive"></div>
-        </div>
-    </div>
-
     <div id="dividerContainer">
         <div id="timerSection">
-            <h1 id="promptArea"></h1>
-            <h3 id="standingArea"></h3>
+            <div id="headerContainer1">
+             <p id="debate">Debate</p>
+            </div>
+            <div id="content1">
+            <div id="mainTextArea">
+            <h1 id="promptArea">prompt will show up here</h1>
+            <p id="standingArea">standing will show up here</p>
+            </div>
             <div id="timerArea">
             <button id="increaseTime" style="background-image: url('arrowOne.png'); width: 30px; height: 30px; background-size: contain; background-position: center; background-color: transparent; border: none;"></button>
             <p id="timer" style="font-size: 50px;">05:00</p>
             <button id="decreaseTime" style="background-image: url('arrowTwo.png'); width: 30px; height: 30px; background-size: contain; background-position: center; background-color: transparent; border: none;"></button>
             </div>
             <div id="controlButtons">
-                <button id="shuffleButton" type="button" style="background-color:#5facfd; border:2px solid #3e83cb; border-radius:10px; width: 65px; height: 40px; font-size: 15px; cursor: pointer;">shuffle</button>
-                <button id="playButton" type="button" style="background-color:#5facfd; border:2px solid #3e83cb; border-radius:10px; width: 60px; height: 40px; font-size: 15px; cursor: pointer;">play</button>
+                <button id="shuffleButton" type="button">shuffle</button>
+                <button id="playButton" type="button">play</button>
             </div>
-
+            </div>
         </div>
 
         <div id="noteSection">
+            <div id="headerContainer2">
+                <p id="notesHeading">Notes</p>
+            </div>
+            <div id="content2">
                 <p>Sources</p>
                 <button id="toggleSources" type="button">view sources</button>
                 <ul id="sourceList"></ul>
 
                 <p>Notes</p>
-                <textarea id="labelNotes" placeholder="Label here..."> </textarea>
-                <textarea id="writeNotes" placeholder="Write here..."> </textarea>
+                <textarea id="labelNotes" placeholder="Label here..."></textarea>
+                <textarea id="writeNotes" placeholder="Write here..."></textarea>
+                <div id="menuBar">
                 <button id="saveNote" type="button">Save</button>
                 <button id="viewAll" type="button">View All</button>
                 <div id="allNotes"></div>
@@ -63,8 +53,10 @@
                     <option>Saved Notes</option>
                 </select>
                 <button id="deleteNote" type="button"> X </button>
+                </div>
                 <p id="label"></p>
                 <p id="content"></p>
+        </div>
         </div>
     </div>
 

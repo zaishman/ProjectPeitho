@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "debate_app copy",
+			"path": "."
+		},
+		{
+			"name": "DM_Sans",
+			"path": "../Downloads/DM_Sans"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "debate_app copy"
+	}
+}
